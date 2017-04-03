@@ -14,7 +14,7 @@ class Store extends React.Component {
 	}
 
 	handleClick() {
-		this.props.buy(69,5);
+		this.props.buy(2,5, this.props.name);
 		this.disableButton();
 		console.log('clicked');
 		// console.log()

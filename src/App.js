@@ -41,9 +41,7 @@ class App extends React.Component {
 
   }
 
-  buyItem (item, cost) {
-    console.log(item, cost);
-    console.log('test');
+  buyItem (item, cost, name) {
 
     this.setState({
       mult: item,

@@ -23,7 +23,6 @@ class Item extends React.Component {
 
 	checkBank() {
 		if(this.props.bank === this.props.cost-1){
-			console.log('enable');
 			this.setState({
 				disabled: ''
 			})
@@ -43,7 +42,7 @@ class Item extends React.Component {
 
 	render() {
 		return (
-			<button disabled={this.state.disabled} onClick={(e) => this.handleClick(2,5)}>Buy {this.props.name} for {this.props.cost}</button>
+			<button disabled={this.state.disabled} onClick={(e) => this.handleClick(2,this.props.cost)}>Buy {this.props.name} for {this.props.cost}</button>
 		)
 	}
 }
