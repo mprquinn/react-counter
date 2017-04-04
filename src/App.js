@@ -2,6 +2,7 @@ import React from 'react';
 import Counter from './components/Counter';
 // import Store from './components/Store';
 import Item from './components/Item';
+import { number_format } from './helpers';
 
 import './App.css';
 
@@ -56,7 +57,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <Counter units={Math.round(this.state.units)} />
+        <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
         <button className="add-unit" onClick={(e) => this.updateCount(1)}>Add Unit!</button>
 
