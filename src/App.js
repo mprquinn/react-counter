@@ -6,7 +6,8 @@ import { number_format } from './helpers';
 
 import { Button, Jumbotron, Col, Well } from 'react-bootstrap';
 
-import './App.css';
+import './css/styles.css';
+
 
 class App extends React.Component {
 

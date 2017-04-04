@@ -1,0 +1,17 @@
+.app {
+  max-width: 960px;
+  margin: 5% auto; }
+
+.jumbotron {
+  padding: 2em; }
+
+.Inventory {
+  margin: 2em 0; }
+
+.counter {
+  text-align: center; }
+
+.add-unit {
+  display: block;
+  float: none;
+  margin: 1em auto; }
