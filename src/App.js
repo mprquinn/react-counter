@@ -4,6 +4,8 @@ import Counter from './components/Counter';
 import Item from './components/Item';
 import { number_format } from './helpers';
 
+import { Button, Jumbotron, Col, Well } from 'react-bootstrap';
+
 import './App.css';
 
 class App extends React.Component {
@@ -57,18 +59,21 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
+        <Jumbotron>
+          <h1>Clicker Game</h1>
+        </Jumbotron>
         <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
-        <button className="add-unit" onClick={(e) => this.updateCount(1)}>Add Unit!</button>
+        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>Add Unit!</Button>
 
-        <div className="Inventory">
+        <Well className="Inventory">
           <h3>Your Inventory</h3>
           {
             Object.keys(this.state.items).map(key => 
               <li key={key}>{this.state.items[key].name}: {this.state.items[key].count}</li>
             )
           }
-        </div>
+        </Well>
 
         <div className="Store">
               <h3>Items</h3>
@@ -77,11 +82,15 @@ class App extends React.Component {
                   <li className="store__item">
 
                     <Item name="Bunk" mult={1.2} cost={5} buy={this.buyItem} bank={this.state.units} />
+                  </li>
 
+                  <li>
                     <Item name="Barracks" mult={1.5} cost={20} buy={this.buyItem} bank={this.state.units} />
                   </li>
+
                 </ul>
-          </div>
+        </div>
+
       </div>
     );
   }
