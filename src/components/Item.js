@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button } from 'react-bootstrap'
 
 class Item extends React.Component {
 	constructor() {
@@ -22,7 +23,7 @@ class Item extends React.Component {
 
 	render() {
 		return (
-			<button disabled={ this.props.bank >= this.props.cost ? `` : `disabled`} onClick={(e) => this.handleClick(this.props.mult,this.props.cost,this.props.name)}>Buy {this.props.name} for {this.props.cost}</button>
+			<Button disabled={ this.props.bank >= this.props.cost ? `` : `disabled`} onClick={(e) => this.handleClick(this.props.mult,this.props.cost,this.props.name)}>Buy {this.props.name} for {this.props.cost}</Button>
 		)
 	}
 }
