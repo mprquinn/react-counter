@@ -17,7 +17,7 @@ class App extends React.Component {
     this.state = {
       units: 0,
       mult: 1,
-      items: []
+      items: {}
     }
   }
 
@@ -42,19 +42,32 @@ class App extends React.Component {
   }
 
   buyItem (item, cost, name) {
-
-    this.setState({
-      mult: item,
-      units: this.state.units - cost
-    });
-  }
+    console.log(item);
+  this.setState(({items, mult, units}) => ({
+    items: { ...items, [name]: {
+      name,
+      count: items[name] ? (items[name].count + 1) : 1
+    }},
+    mult: mult * item,
+    units: units - cost
+  })) 
+}
 
   render() {
     return (
       <div className="app">
-        <Counter units={this.state.units} />
+        <Counter units={Math.round(this.state.units)} />
 
         <button className="add-unit" onClick={(e) => this.updateCount(1)}>Add Unit!</button>
+
+        <div className="Inventory">
+          <h3>Your Inventory</h3>
+          {
+            Object.keys(this.state.items).map(key => 
+              <li key={key}>{this.state.items[key].name}: {this.state.items[key].count}</li>
+            )
+          }
+        </div>
 
         <div className="Store">
               <h3>Items</h3>
@@ -62,7 +75,9 @@ class App extends React.Component {
               <ul className="store__items">
                   <li className="store__item">
 
-                    <Item name="Milk" cost={50} buy={this.buyItem} bank={this.state.units} />
+                    <Item name="Bunk" mult={1.2} cost={5} buy={this.buyItem} bank={this.state.units} />
+
+                    <Item name="Barracks" mult={1.5} cost={20} buy={this.buyItem} bank={this.state.units} />
                   </li>
                 </ul>
           </div>

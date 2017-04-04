@@ -3,7 +3,7 @@ import React from 'react';
 class Item extends React.Component {
 	constructor() {
 		super();
-		
+
 		this.handleClick = this.handleClick.bind(this);
 
 		this.state = {
@@ -16,13 +16,13 @@ class Item extends React.Component {
 	}
 
 
-	handleClick(item, cost) {
-		this.props.buy(item, cost);
+	handleClick(item, cost, name) {
+		this.props.buy(item, cost, name);
 	}
 
 	render() {
 		return (
-			<button disabled={ this.props.bank >= this.props.cost ? `` : `disabled`} onClick={(e) => this.handleClick(2,this.props.cost)}>Buy {this.props.name} for {this.props.cost}</button>
+			<button disabled={ this.props.bank >= this.props.cost ? `` : `disabled`} onClick={(e) => this.handleClick(this.props.mult,this.props.cost,this.props.name)}>Buy {this.props.name} for {this.props.cost}</button>
 		)
 	}
 }
