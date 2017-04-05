@@ -3,6 +3,7 @@ import Counter from './components/Counter';
 import Win from './components/Win';
 // import Store from './components/Store';
 import Item from './components/Item';
+import Scores from './components/Scores';
 import { number_format, toHHMMSS } from './helpers';
 
 import { Button, Jumbotron, Col, Well } from 'react-bootstrap';
@@ -18,6 +19,7 @@ class App extends React.Component {
     this.updateCount = this.updateCount.bind(this);
     this.buyItem = this.buyItem.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
+    this.winGame = this.winGame.bind(this);
     // set state
 
     this.state = {
@@ -26,7 +28,7 @@ class App extends React.Component {
       items: {},
       win: false,
       timer: 0,
-      winState: 1000000000
+      winState: 10
     }
   }
 
@@ -61,9 +63,7 @@ class App extends React.Component {
       });
 
     } else if (this.state.units >= this.state.winState) {
-      this.setState({
-        win: true
-      })
+      this.winGame();
     }
   }
 
@@ -77,19 +77,26 @@ class App extends React.Component {
       mult: mult * item,
       units: units - cost
     })) 
-}
+  }
+
+  winGame() {
+    this.setState({
+      win: true
+    })
+  }
+  
 
   render() {
     return (
       <div className="app">
         <Jumbotron>
-          <h1>Click The Button</h1>
-          <h3>Click this beautiful button 1 million times.</h3>
+          <h1>The Button</h1>
+          <h3>Click this beautiful button and get your 😎 above 1 billion.</h3>
           <h5>You've been playing this dumb thing for {toHHMMSS(this.state.timer)}</h5>
         </Jumbotron>
         <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
-        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>Beautiful Button</Button>
+        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>😍 Beautiful Button 😍</Button>
 
         <Well className="inventory">
           <h3>Cool things you've bought</h3>
@@ -101,7 +108,7 @@ class App extends React.Component {
         </Well>
 
         <div className="store">
-          <h3>Cool things to buy for clicks</h3>
+          <h3>Cool things to buy for 😎</h3>
 
           <ul className="store__items">
               <li className="store__item">
@@ -121,10 +128,12 @@ class App extends React.Component {
         </div>
         
         <Win won={this.state.win} timer={this.state.timer} />
+
+        <Scores />
         
 
         <p className="disclaimer">
-          Built by Mike in order to wrap my head around React.
+          Built by Mike in order to wrap his head around React. <a href="https://github.com/mprquinn" target="_blank">💻</a>
         </p>
       </div>
     );

@@ -23,7 +23,7 @@ class Item extends React.Component {
 
 	render() {
 		return (
-			<Button disabled={ this.props.bank >= this.props.cost ? `` : `disabled`} onClick={(e) => this.handleClick(this.props.mult,this.props.cost,this.props.name)}>Buy {this.props.name} for {this.props.cost} clicks</Button>
+			<Button disabled={ this.props.bank >= this.props.cost ? `` : `disabled`} onClick={(e) => this.handleClick(this.props.mult,this.props.cost,this.props.name)}>Buy {this.props.name} for {this.props.cost}</Button>
 		)
 	}
 }
