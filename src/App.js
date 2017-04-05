@@ -51,7 +51,6 @@ class App extends React.Component {
   }
 
   updateCount(mult) {
-
     if (this.state.units < this.state.winState) {
       var units = this.state.units;
 
@@ -61,7 +60,7 @@ class App extends React.Component {
         units
       });
 
-    } else if (this.state.units > this.state.winState) {
+    } else if (this.state.units >= this.state.winState) {
       this.setState({
         win: true
       })

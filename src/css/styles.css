@@ -31,19 +31,25 @@
   margin: 1em 0; }
 
 .win {
+  box-sizing: border-box;
   text-align: center;
-  width: 33%;
+  width: 66%;
   background: #fff;
   border-radius: 5px;
   border: 1px solid #3d3d3d;
   position: absolute;
   top: 25%;
   left: 50%;
-  margin-left: -17%;
+  margin-left: -33%;
+  padding: 2em;
   z-index: 2;
   display: none; }
   .win.true {
     display: block; }
+  @media screen and (max-width: 600px) {
+    .win {
+      width: 80%;
+      margin-left: -40%; } }
 
 .win__modal {
   background: rgba(0, 0, 0, 0.7);
