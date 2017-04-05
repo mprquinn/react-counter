@@ -18,28 +18,23 @@ class Scores extends React.Component {
 
 	loadScores() {
 		var db = base.database();
-		const scores = db.ref();
-		var topScores = [];
-		scores.on('value', function(snapshot) {
-			var scores = snapshot.val();
-			
-			for (var key in scores) {
-				topScores.push(scores[key]);
-			}
-
-			this.setState({
-				scores: topScores
+		const scoresRef = db.ref('scores');
+		var scores = this.state.scores
+		scoresRef.orderByChild('score').on('value', (data) => {
+			data.forEach((data) => {
+				console.log(data.val());
+				this.setState({
+					scores: scores.push(data.val())
+				});
 			});
-		})
-
-		// console.log(this.state.scores);
+		});
 		
 	}
 
 	componentDidMount() {
 		this.loadScores();
-		console.log(this.state);
-	}
+		console.log(this.state.scores)
+	}	
 
 	render() {
 		return (

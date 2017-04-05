@@ -22,7 +22,7 @@ class Win extends React.Component {
 		// console.log(entry);
 		console.log(base.database());
 
-		base.database().ref(timestamp).set({
+		base.database().ref('scores/' + timestamp).set({
 			name: entry.name,
 			score: entry.score
 		});
