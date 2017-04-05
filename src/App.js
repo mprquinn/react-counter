@@ -26,7 +26,7 @@ class App extends React.Component {
       items: {},
       win: false,
       timer: 0,
-      winState: 100
+      winState: 1000000000
     }
   }
 
