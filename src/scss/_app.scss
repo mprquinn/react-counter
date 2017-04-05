@@ -7,17 +7,16 @@
 	padding: 2em;
 }
 
-.Inventory {
-	margin: 2em 0;
-}
-
-.counter {
-	text-align: center;
-}
-
 .add-unit {
 	display: block;
 	float: none;
 	margin: 1em auto;
+}
+
+.disclaimer {
+	font-size: 12px;
+	text-align: center;
+	color: #cccccc;
+	margin: 5em 0;
 }
 // break this up into modules, dawg

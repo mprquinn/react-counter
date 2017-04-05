@@ -5,13 +5,54 @@
 .jumbotron {
   padding: 2em; }
 
-.Inventory {
-  margin: 2em 0; }
-
-.counter {
-  text-align: center; }
-
 .add-unit {
   display: block;
   float: none;
   margin: 1em auto; }
+
+.disclaimer {
+  font-size: 12px;
+  text-align: center;
+  color: #cccccc;
+  margin: 5em 0; }
+
+.counter {
+  text-align: center; }
+
+.inventory {
+  margin: 2em 0; }
+
+.store__items {
+  list-style-type: none;
+  margin-left: 0;
+  padding-left: 0; }
+
+.store__item {
+  margin: 1em 0; }
+
+.win {
+  text-align: center;
+  width: 33%;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #3d3d3d;
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  margin-left: -17%;
+  z-index: 2;
+  display: none; }
+  .win.true {
+    display: block; }
+
+.win__modal {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  display: none; }
+  .win__modal.true {
+    display: block; }

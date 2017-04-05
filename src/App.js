@@ -1,5 +1,6 @@
 import React from 'react';
 import Counter from './components/Counter';
+import Win from './components/Win';
 // import Store from './components/Store';
 import Item from './components/Item';
 import { number_format } from './helpers';
@@ -16,17 +17,22 @@ class App extends React.Component {
 
     this.updateCount = this.updateCount.bind(this);
     this.buyItem = this.buyItem.bind(this);
+    this.updateTimer = this.updateTimer.bind(this);
     // set state
 
     this.state = {
       units: 0,
       mult: 1,
-      items: {}
+      items: {},
+      win: false,
+      timer: 0,
+      winState: 1000000000
     }
   }
 
   componentDidMount() {
     setInterval(this.updateCount, 1000);
+    setInterval(this.updateTimer, 1000);
   }
 
   componentWillUpdate() {
@@ -34,40 +40,59 @@ class App extends React.Component {
     // console.log(this.state);
   }
 
-  updateCount (mult) {
-    var units = this.state.units;
+  updateTimer() {
+    if (this.state.units < this.state.winState) {
+      var timer = this.state.timer;
+      timer++;
+      this.setState({
+        timer
+      });
+    }
+  }
 
-    units = units + this.state.mult;
+  updateCount(mult) {
 
-    this.setState({
-      units
-    });
+    if (this.state.units < this.state.winState) {
+      var units = this.state.units;
 
+      units = units + this.state.mult;
+
+      this.setState({
+        units
+      });
+
+    } else {
+      this.setState({
+        win: true
+      })
+    }
   }
 
   buyItem (item, cost, name) {
     console.log(item);
-  this.setState(({items, mult, units}) => ({
-    items: { ...items, [name]: {
-      name,
-      count: items[name] ? (items[name].count + 1) : 1
-    }},
-    mult: mult * item,
-    units: units - cost
-  })) 
+    this.setState(({items, mult, units}) => ({
+      items: { ...items, [name]: {
+        name,
+        count: items[name] ? (items[name].count + 1) : 1
+      }},
+      mult: mult * item,
+      units: units - cost
+    })) 
 }
 
   render() {
     return (
       <div className="app">
         <Jumbotron>
-          <h1>Clicker Game</h1>
+          <h1>Click This Thing</h1>
+          <h3>Click this beautiful button 1 million times.</h3>
+          <h5>You've been playing this dumb thing for {this.state.timer} seconds</h5>
         </Jumbotron>
         <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
         <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>Add Unit!</Button>
 
-        <Well className="Inventory">
+        <Well className="inventory">
           <h3>Your Inventory</h3>
           {
             Object.keys(this.state.items).map(key => 
@@ -76,22 +101,32 @@ class App extends React.Component {
           }
         </Well>
 
-        <div className="Store">
-              <h3>Items</h3>
+        <div className="store">
+          <h3>Items</h3>
 
-              <ul className="store__items">
-                  <li className="store__item">
+          <ul className="store__items">
+              <li className="store__item">
 
-                    <Item name="Bunk" mult={1.2} cost={5} buy={this.buyItem} bank={this.state.units} />
-                  </li>
+                <Item name="Bunk" mult={1.2} cost={50} buy={this.buyItem} bank={this.state.units} />
+              </li>
 
-                  <li>
-                    <Item name="Barracks" mult={1.5} cost={20} buy={this.buyItem} bank={this.state.units} />
-                  </li>
+              <li className="store__item">
+                <Item name="Barracks" mult={1.5} cost={200} buy={this.buyItem} bank={this.state.units} />
+              </li>
 
-                </ul>
+              <li className="store__item">
+                <Item name="Apartment" mult={1.65} cost={400} buy={this.buyItem} bank={this.state.units} />
+              </li>
+
+            </ul>
         </div>
+        
+        <Win won={this.state.win} timer={this.state.timer} />
+        
 
+        <p className="disclaimer">
+          Built by Mike in order to wrap my head around React.
+        </p>
       </div>
     );
   }

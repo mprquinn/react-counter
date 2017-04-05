@@ -8,7 +8,7 @@ class Counter extends React.Component {
 	            Current units: <span>{this.props.units}</span>
 	          </h3>
 
-	          <progress value={this.props.cleanNumber} max="10000"></progress>
+	          <progress value={this.props.cleanNumber} max="100000"></progress>
 
 	        </div>
 		)
