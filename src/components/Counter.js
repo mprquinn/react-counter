@@ -5,10 +5,10 @@ class Counter extends React.Component {
 		return (
 			<div className="counter">
 	          <h3>
-	            Current units: <span>{this.props.units}</span>
+	            Current clicks of the big, beautiful button: <span>{this.props.units}</span>
 	          </h3>
 
-	          <progress value={this.props.cleanNumber} max="100000"></progress>
+	          <progress value={this.props.cleanNumber} max="100"></progress>
 
 	        </div>
 		)

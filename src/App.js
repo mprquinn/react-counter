@@ -3,7 +3,7 @@ import Counter from './components/Counter';
 import Win from './components/Win';
 // import Store from './components/Store';
 import Item from './components/Item';
-import { number_format } from './helpers';
+import { number_format, toHHMMSS } from './helpers';
 
 import { Button, Jumbotron, Col, Well } from 'react-bootstrap';
 
@@ -26,7 +26,7 @@ class App extends React.Component {
       items: {},
       win: false,
       timer: 0,
-      winState: 1000000000
+      winState: 100
     }
   }
 
@@ -61,7 +61,7 @@ class App extends React.Component {
         units
       });
 
-    } else {
+    } else if (this.state.units > this.state.winState) {
       this.setState({
         win: true
       })
@@ -84,16 +84,16 @@ class App extends React.Component {
     return (
       <div className="app">
         <Jumbotron>
-          <h1>Click This Thing</h1>
+          <h1>Click The Button</h1>
           <h3>Click this beautiful button 1 million times.</h3>
-          <h5>You've been playing this dumb thing for {this.state.timer} seconds</h5>
+          <h5>You've been playing this dumb thing for {toHHMMSS(this.state.timer)}</h5>
         </Jumbotron>
         <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
-        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>Add Unit!</Button>
+        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>Beautiful Button</Button>
 
         <Well className="inventory">
-          <h3>Your Inventory</h3>
+          <h3>Cool things you've bought</h3>
           {
             Object.keys(this.state.items).map(key => 
               <li key={key}>{this.state.items[key].name}: {this.state.items[key].count}</li>
@@ -102,20 +102,20 @@ class App extends React.Component {
         </Well>
 
         <div className="store">
-          <h3>Items</h3>
+          <h3>Cool things to buy for clicks</h3>
 
           <ul className="store__items">
               <li className="store__item">
 
-                <Item name="Bunk" mult={1.2} cost={50} buy={this.buyItem} bank={this.state.units} />
+                <Item name="Heavier Click" mult={1.2} cost={50} buy={this.buyItem} bank={this.state.units} />
               </li>
 
               <li className="store__item">
-                <Item name="Barracks" mult={1.5} cost={200} buy={this.buyItem} bank={this.state.units} />
+                <Item name="A Bit Heavier Click" mult={1.5} cost={200} buy={this.buyItem} bank={this.state.units} />
               </li>
 
               <li className="store__item">
-                <Item name="Apartment" mult={1.65} cost={400} buy={this.buyItem} bank={this.state.units} />
+                <Item name="Wildly Heavy Click" mult={1.65} cost={400} buy={this.buyItem} bank={this.state.units} />
               </li>
 
             </ul>
