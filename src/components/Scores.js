@@ -25,7 +25,6 @@ class Scores extends React.Component {
 		scoresRef.orderByChild('score').on('value', (data) => {
 			data.forEach((data) => {
 				scores.push(data.val());
-				console.log(scores);
 				this.setState({
 					scores
 				});

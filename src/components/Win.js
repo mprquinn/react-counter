@@ -22,7 +22,6 @@ class Win extends React.Component {
 			score: this.props.timer
 		};
 		const timestamp = Date.now();
-		// console.log(entry);
 
 		base.database().ref('scores/' + timestamp).set({
 			name: entry.name,

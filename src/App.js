@@ -20,6 +20,7 @@ class App extends React.Component {
     this.buyItem = this.buyItem.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
     this.winGame = this.winGame.bind(this);
+    this.addFace = this.addFace.bind(this);
     // set state
 
     this.state = {
@@ -62,6 +63,8 @@ class App extends React.Component {
         units
       });
 
+      // this.addFace();
+
     } else if (this.state.units >= this.state.winState) {
       this.winGame();
     }
@@ -85,10 +88,24 @@ class App extends React.Component {
     })
   }
   
+  addFace() {
+
+    var face = '<span>😎</span>'
+    var container = document.getElementsByClassName('faces')[0];
+    // console.log(container.innerHtml);
+    for (var i=0; i<this.state.units; i++) {
+      container.innerHTML += face
+    }
+
+    
+  }  
 
   render() {
     return (
       <div className="app">
+        <div className="faces">
+          <p>&nbsp;</p>
+        </div>
         <Jumbotron>
           <h1>The Button</h1>
           <h3>Click this beautiful button and get your 😎 above 1 billion.</h3>

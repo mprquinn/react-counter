@@ -16,7 +16,17 @@
 .disclaimer {
 	font-size: 12px;
 	text-align: center;
-	color: #cccccc;
+	color: #3d3d3d;
 	margin: 5em 0;
+}
+
+.faces {
+	position: fixed;
+	top: -25px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	opacity: 0.7;
+	z-index: -2;
 }
 // break this up into modules, dawg
