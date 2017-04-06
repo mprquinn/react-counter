@@ -41,6 +41,13 @@
 	}
 }
 
+.win__submit {
+	display: block;
+	&.win__submit--submitted {
+		display: none;
+	}
+}
+
 .win__title {
 
 }

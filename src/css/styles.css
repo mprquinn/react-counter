@@ -62,3 +62,8 @@
   display: none; }
   .win__modal.true {
     display: block; }
+
+.win__submit {
+  display: block; }
+  .win__submit.win__submit--submitted {
+    display: none; }
