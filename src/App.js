@@ -18,13 +18,14 @@ class App extends React.Component {
 
     this.updateCount = this.updateCount.bind(this);
     this.buyItem = this.buyItem.bind(this);
+    this.autoEnable = this.autoEnable.bind(this);
     this.updateTimer = this.updateTimer.bind(this);
     this.winGame = this.winGame.bind(this);
-    this.addFace = this.addFace.bind(this);
     // set state
 
     this.state = {
       units: 0,
+      auto: false,
       mult: 1,
       items: {},
       win: false,
@@ -34,13 +35,13 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    setInterval(this.updateCount, 1000);
-    setInterval(this.updateTimer, 1000);
+    setInterval(this.updateTimer, 1000);  
   }
 
   componentWillUpdate() {
     // console.log(this.state);
     // console.log(this.state);
+
   }
 
   updateTimer() {
@@ -51,6 +52,18 @@ class App extends React.Component {
         timer
       });
     }
+  }
+
+  autoEnable() {
+    var units = this.state.units;
+
+    units = units - 100;
+
+    this.setState({
+      auto: true,
+      units
+    });
+    setInterval(this.updateCount, 1000);
   }
 
   updateCount(mult) {
@@ -71,7 +84,6 @@ class App extends React.Component {
   }
 
   buyItem (item, cost, name) {
-    console.log(item);
     this.setState(({items, mult, units}) => ({
       items: { ...items, [name]: {
         name,
@@ -87,18 +99,7 @@ class App extends React.Component {
       win: true
     })
   }
-  
-  addFace() {
-
-    var face = '<span>😎</span>'
-    var container = document.getElementsByClassName('faces')[0];
-    // console.log(container.innerHtml);
-    for (var i=0; i<this.state.units; i++) {
-      container.innerHTML += face
-    }
-
-    
-  }  
+ 
 
   render() {
     return (
@@ -128,8 +129,12 @@ class App extends React.Component {
           <h3>Cool things to buy for 😎</h3>
 
           <ul className="store__items">
-              <li className="store__item">
 
+              <li className="store__item">
+                <button className="btn btn-info" onClick={() => this.autoEnable()} disabled={ this.state.units < 100 || this.state.auto ? `disabled` : ``}>Buy Auto Click for 100</button>
+              </li>
+
+              <li className="store__item">
                 <Item name="Heavier Click" mult={1.2} cost={50} buy={this.buyItem} bank={this.state.units} />
               </li>
 
