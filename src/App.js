@@ -112,9 +112,12 @@ class App extends React.Component {
           <h3>Click this beautiful button and get your 😎 above 1 billion.</h3>
           <h5>You've been playing this dumb thing for {toHHMMSS(this.state.timer)}</h5>
         </Jumbotron>
+        
         <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
-        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>😍 Beautiful Button 😍</Button>
+        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>
+          😍 Beautiful Button 😍
+        </Button>
 
         <Well className="inventory">
           <h3>Cool things you've bought</h3>

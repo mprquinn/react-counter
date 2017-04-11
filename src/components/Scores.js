@@ -50,7 +50,7 @@ class Scores extends React.Component {
 					<h3>Top Scores:</h3>
 					<ul className="scores__list">
 						{
-							Object.keys(this.state.scores).map(key => <li>{this.state.scores[key].name}: {toHHMMSS(this.state.scores[key].score)}</li>)
+							Object.keys(this.state.scores).map(key => <li key={key}>{this.state.scores[key].name}: {toHHMMSS(this.state.scores[key].score)}</li>)
 						}
 					</ul>
 				</Well>
