@@ -9,8 +9,37 @@
 
 .add-unit {
 	display: block;
+	width: 210px;
 	float: none;
 	margin: 1em auto;
+	padding: 1em 2em;
+	cursor: pointer;
+	border-radius: 3px;
+	transition: all 0.05s linear;
+
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+
+	/*
+	Introduced in IE 10.
+	See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+	*/
+	-ms-user-select: none;
+	user-select: none;
+
+	&:focus {
+		outline: none;
+	}
+	
+	&:active {
+		transform: scale(1.15, 1.05);
+		box-shadow: 0px 0px 15px 10px rgba(92,184,91,0.3);
+	}
+
+	&:hover {
+		text-decoration: none;
+	}
 }
 
 .disclaimer {

@@ -27,6 +27,7 @@ class App extends React.Component {
       units: 0,
       auto: false,
       mult: 1,
+      buttonAnim: false,
       items: {},
       win: false,
       timer: 0,
@@ -66,7 +67,9 @@ class App extends React.Component {
     setInterval(this.updateCount, 1000);
   }
 
-  updateCount(mult) {
+  updateCount(e, mult) {
+    // this.buttonAnimate();
+    console.log(e.keycode);
     if (this.state.units < this.state.winState) {
       var units = this.state.units;
 
@@ -112,9 +115,12 @@ class App extends React.Component {
           <h3>Click this beautiful button and get your 😎 above 1 billion.</h3>
           <h5>You've been playing this dumb thing for {toHHMMSS(this.state.timer)}</h5>
         </Jumbotron>
+        
         <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
-        <Button className="add-unit btn-success" bsSize="large" onClick={(e) => this.updateCount(1)}>😍 Beautiful Button 😍</Button>
+        <a className="add-unit btn-success" onClick={(e) => this.updateCount(e, 1)}>
+          😍 Beautiful Button 😍
+        </a>
 
         <Well className="inventory">
           <h3>Cool things you've bought</h3>
