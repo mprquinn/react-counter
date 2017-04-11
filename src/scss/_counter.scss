@@ -2,15 +2,17 @@
 	text-align: center;
 }
 
+.counter h3 {
+	height: 35px;
+	overflow: hidden;
+}
 
 .unit span{
-	position: relative;
 	display: block;
 	line-height: 30px;
 }
 
 .unit-enter {
-	position: absolute;
 	display: none;
 	opacity: 0;
 	transition: all 0.150s linear;
@@ -19,16 +21,15 @@
 	&.unit-enter-active {
 		display: block;
 		opacity: 1;
-		transform: scale(1.4);
+		transform: scale(1.2);
 	}
 
 }
 
 .unit-leave {
-	position: absolute;
 	display: block;
 	transition: all 0.100s linear;
-	transform: scale(1.4);
+	transform: scale(1.2);
 	opacity: 1;
 
 	&.unit-leave-active {
