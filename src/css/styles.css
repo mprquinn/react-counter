@@ -26,7 +26,7 @@
   .add-unit:focus {
     outline: none; }
   .add-unit:active {
-    transform: scale(1.15, 1.05);
+    transform: scale(0.95, 0.85);
     box-shadow: 0px 0px 15px 10px rgba(92, 184, 91, 0.3); }
   .add-unit:hover {
     text-decoration: none; }
