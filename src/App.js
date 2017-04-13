@@ -6,7 +6,7 @@ import Item from './components/Item';
 import Scores from './components/Scores';
 import { number_format, toHHMMSS } from './helpers';
 
-import { Button, Jumbotron, Col, Well } from 'react-bootstrap';
+import { Jumbotron, Well } from 'react-bootstrap';
 
 import './css/styles.css';
 
@@ -30,6 +30,7 @@ class App extends React.Component {
       buttonAnim: false,
       items: {},
       win: false,
+      playing: false,
       timer: 0,
       winState: 1000000000
     }
@@ -46,7 +47,7 @@ class App extends React.Component {
   }
 
   updateTimer() {
-    if (this.state.units < this.state.winState) {
+    if (this.state.units < this.state.winState && this.state.units > 0) {
       var timer = this.state.timer;
       timer++;
       this.setState({
@@ -58,7 +59,7 @@ class App extends React.Component {
   autoEnable() {
     var units = this.state.units;
 
-    units = units - 100;
+    units -= 100;
 
     this.setState({
       auto: true,
@@ -68,12 +69,17 @@ class App extends React.Component {
   }
 
   updateCount(e, mult) {
+    if (this.state.units === 0) {
+      this.setState({
+        playing: true
+      });
+    }
     // this.buttonAnimate();
     console.log(e.keycode);
     if (this.state.units < this.state.winState) {
       var units = this.state.units;
 
-      units = units + this.state.mult;
+      units += this.state.mult;
 
       this.setState({
         units
@@ -119,7 +125,7 @@ class App extends React.Component {
         <Counter units={number_format(Math.round(this.state.units))} cleanNumber={Math.round(this.state.units)} />
 
         <a className="add-unit btn-success" onClick={(e) => this.updateCount(e, 1)}>
-          😍 Beautiful Button 😍
+          {this.state.playing ? '😍 Beautiful Button 😍' : '😍 Click to Start 😍'}
         </a>
 
         <Well className="inventory">
