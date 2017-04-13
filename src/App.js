@@ -75,7 +75,7 @@ class App extends React.Component {
       });
     }
     // this.buttonAnimate();
-    console.log(e.keycode);
+  
     if (this.state.units < this.state.winState) {
       var units = this.state.units;
 
@@ -130,6 +130,9 @@ class App extends React.Component {
 
         <Well className="inventory">
           <h3>Cool things you've bought</h3>
+          
+          {this.state.auto ? <li>Auto Click</li> : '' }
+
           {
             Object.keys(this.state.items).map(key => 
               <li key={key}>{this.state.items[key].name}: {this.state.items[key].count}</li>
